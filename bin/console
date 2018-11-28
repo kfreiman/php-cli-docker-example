@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use App\Command\CountDomainsCommand;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\DriverManager;
+
+$application = new Application();
+
+$connectionParams = array(
+    'dbname' => $_SERVER['MYSQL_DATABASE'],
+    'user' => $_SERVER['MYSQL_USER'],
+    'password' => $_SERVER['MYSQL_PASSWORD'],
+    'host' => 'db',
+    'driver' => 'pdo_mysql',
+);
+
+$conn = DriverManager::getConnection($connectionParams, new Configuration());
+
+// register commands
+$application->add(new CountDomainsCommand($conn));
+
+$application->run();

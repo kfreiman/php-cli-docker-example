@@ -1,0 +1,29 @@
+{
+  "name": "kfreiman/php-cli-docker-example",
+  "license": "MIT",
+  "type": "project",
+  "description": "Symfony console example application using docker and mysql",
+  "require": {
+    "symfony/console": "^4.1",
+    "symfony/orm-pack": "^1.0"
+  },
+  "config": {
+    "platform": {
+      "php": "7.2"
+    },
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "chmod 775 bin/console"
+    ]
+  }
+}
